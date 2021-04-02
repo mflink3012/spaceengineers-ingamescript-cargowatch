@@ -1,0 +1,1 @@
+An ingame-script for Space Engineers watching the grids cargo (mass and volume) with watermarks and activates another block on reach. I needed this, because my big drilling-machine got overloaded. With this script one is able to get a signal that mass and/or volume is critical.
