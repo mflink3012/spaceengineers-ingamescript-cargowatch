@@ -28,8 +28,6 @@ namespace SpaceEngineers.IngameScript.CargoWatch
         const string PROP_VOL_WATERM_VAL = "Volume.Watermark.Value";
         const string PROP_VOL_WATERM_ACT = "Volume.Watermark.Activate";
 
-        List<IMyEntity> inventoryEntities = new List<IMyEntity>();
-        TimeSpan time = new TimeSpan();
         long massWatermarkValue = 0;
         IMyFunctionalBlock massWatermarkActivateBlock;
         string massWatermarkActivate;
@@ -40,7 +38,6 @@ namespace SpaceEngineers.IngameScript.CargoWatch
 
         public Program()
         {
-            GridTerminalSystem.GetBlocksOfType(inventoryEntities, entity => entity.HasInventory);
             Dictionary<String, String> properties = ReadProperties(Me.CustomData);
 
             if (properties.ContainsKey(PROP_MASS_WATERM_VAL))
@@ -71,20 +68,20 @@ namespace SpaceEngineers.IngameScript.CargoWatch
             surface.ContentType = ContentType.TEXT_AND_IMAGE;
         }
 
-        public void Save() { }
-
         public void Main(string argument, UpdateType updateSource)
         {
-            time += Runtime.TimeSinceLastRun;
-
             surface.WriteText("");
 
             IMyInventory inventory;
             int currentMass = 0;
             int currentVolume = 0;
             int maxVolume = 0;
+            List<IMyCubeBlock> inventoryEntities = new List<IMyCubeBlock>();
 
-            foreach (IMyEntity invEnt in inventoryEntities)
+            // Filter: only functional inventories and on same grid
+            GridTerminalSystem.GetBlocksOfType(inventoryEntities, entity => entity.CubeGrid == Me.CubeGrid && entity.HasInventory && entity.IsFunctional);
+
+            foreach (IMyCubeBlock invEnt in inventoryEntities)
             {
                 inventory = invEnt.GetInventory();
                 currentMass += inventory.CurrentMass.ToIntSafe();

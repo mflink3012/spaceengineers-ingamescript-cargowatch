@@ -1,15 +1,16 @@
 # Short description
-An ingame-script for Space Engineers watching the grids cargo (mass and volume) with watermarks and activates another block on reach.
+An ingame-script for Space Engineers watching the grids cargo (loaded mass and volume) with watermarks and activates another block on reach.
 
-With this script one is able to get a signal that mass and/or volume is getting critical.
+With this script one is able to get a signal that loaded mass and/or volume is getting critical on the current grid (docked grids and non-functional inventory-blocks will be ignored).
 
-I needed this, because my big drilling-machine got overloaded and my grinding-machine got full. No I have a LCD or a blinking light activated to warn me.
+I needed this, because my big drilling-machine got overloaded and my grinding-machine got full. Now I have a LCD or a blinking light activated to warn me.
 
-This script will output some details on current mass and volume to the display of the programmable block.
+This script will output some details on current loaded mass and volume to the display of the programmable block.
 
 It will give extra details (like defined blocks) in the debugging-section of the programmable block.
 
 # Custom Data (Properties)
+If you change the Custom Data of the programmable block the script is running on, you need to recompile the script to get the changes active.
 
 ## Watermark for mass
 To watch the mass-load of the grid, give `Mass.Watermark.Value` and `Mass.Watermark.Activate`.

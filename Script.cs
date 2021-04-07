@@ -1,9 +1,7 @@
- const string PROP_MASS_WATERM_VAL = "Mass.Watermark.Value";
+﻿ const string PROP_MASS_WATERM_VAL = "Mass.Watermark.Value";
 const string PROP_MASS_WATERM_ACT = "Mass.Watermark.Activate";
 const string PROP_VOL_WATERM_VAL = "Volume.Watermark.Value";
-const string PROP_VOL_WATERM_ACT = "Volume.Watermark.Activate"; List<IMyEntity> inventoryEntities = new List<IMyEntity>();
-TimeSpan time = new TimeSpan();
-long massWatermarkValue = 0;
+const string PROP_VOL_WATERM_ACT = "Volume.Watermark.Activate"; long massWatermarkValue = 0;
 IMyFunctionalBlock massWatermarkActivateBlock;
 string massWatermarkActivate;
 long volumeWatermarkValue = 0;
@@ -11,7 +9,6 @@ IMyFunctionalBlock volumeWatermarkActivateBlock;
 string volumeWatermarkActivate;
 IMyTextSurface surface; public Program()
 {
-    GridTerminalSystem.GetBlocksOfType(inventoryEntities, entity => entity.HasInventory);
     Dictionary<String, String> properties = ReadProperties(Me.CustomData);     if (properties.ContainsKey(PROP_MASS_WATERM_VAL))
     {
         massWatermarkValue = Int64.Parse(properties[PROP_MASS_WATERM_VAL] as string);
@@ -28,12 +25,14 @@ IMyTextSurface surface; public Program()
         volumeWatermarkActivateBlock = GridTerminalSystem.GetBlockWithName(volumeWatermarkActivate) as IMyFunctionalBlock;
     }     Runtime.UpdateFrequency = UpdateFrequency.Update100;     surface = Me.GetSurface(0);
     surface.ContentType = ContentType.TEXT_AND_IMAGE;
-} public void Save() { } public void Main(string argument, UpdateType updateSource)
+} public void Main(string argument, UpdateType updateSource)
 {
-    time += Runtime.TimeSinceLastRun;     surface.WriteText("");     IMyInventory inventory;
+    surface.WriteText("");     IMyInventory inventory;
     int currentMass = 0;
     int currentVolume = 0;
-    int maxVolume = 0;     foreach (IMyEntity invEnt in inventoryEntities)
+    int maxVolume = 0;
+    List<IMyCubeBlock> inventoryEntities = new List<IMyCubeBlock>();
+    GridTerminalSystem.GetBlocksOfType(inventoryEntities, entity => entity.CubeGrid == Me.CubeGrid && entity.HasInventory && entity.IsFunctional);     foreach (IMyCubeBlock invEnt in inventoryEntities)
     {
         inventory = invEnt.GetInventory();
         currentMass += inventory.CurrentMass.ToIntSafe();
@@ -107,4 +106,4 @@ IMyTextSurface surface; public Program()
         pair = line.Split('=');
         result.Add(pair[0], pair[1]);
     }     return result;
-}
+} 
