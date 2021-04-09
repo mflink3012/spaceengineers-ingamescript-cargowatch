@@ -1,3 +1,5 @@
+![Thumbnail](thumb.png)
+
 # Short description
 An ingame-script for Space Engineers watching the grids cargo (mass and volume) with watermarks and activates another block on reach.
 
@@ -32,3 +34,6 @@ This `long`-property will define the value for critical volume in L (liters). On
 ### Mass.Watermark.Activate (string)
 
 This `string`-property will hold the name of the functional block to enable or disable (depending on `Volume.Watermark.Value`).
+
+# Steam Workshop
+[https://steamcommunity.com/sharedfiles/filedetails/?id=2447352453](https://steamcommunity.com/sharedfiles/filedetails/?id=2447352453)
