@@ -27,11 +27,11 @@ This `string`-property will hold the name of the functional block to enable or d
 ## Watermark for volume
 To watch the volume-load of the grid, give `Volume.Watermark.Value` and `Volume.Watermark.Activate`.
 
-### Mass.Watermark.Value (long)
+### Volume.Watermark.Value (long)
 
 This `long`-property will define the value for critical volume in L (liters). Once this value is reached (or exceeded) **and** `Volume.Watermark.Activate` is defined, the defined block will be enabled. If the current volume is below the watermark, the defined block will be disabled.
 
-### Mass.Watermark.Activate (string)
+### Volume.Watermark.Activate (string)
 
 This `string`-property will hold the name of the functional block to enable or disable (depending on `Volume.Watermark.Value`).
 
