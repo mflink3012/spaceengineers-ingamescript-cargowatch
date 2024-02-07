@@ -13,7 +13,7 @@ It will give extra details (like defined blocks) in the debugging-section of the
 
 # Example
 
-Add to `Custom Data` on a programmable block:
+Add to `Custom Data` on a programmable block attached to a vehicle:
 
     Mass.Watermark.Value=1400000
     Mass.Watermark.Activate=Chisel.LCD
