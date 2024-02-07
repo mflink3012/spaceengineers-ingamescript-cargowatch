@@ -15,8 +15,8 @@ It will give extra details (like defined blocks) in the debugging-section of the
 
 Add to `Custom Data` on a programmable block:
 
-  Mass.Watermark.Value=1400000
-  Mass.Watermark.Activate=Chisel.LCD
+    Mass.Watermark.Value=1400000
+    Mass.Watermark.Activate=Chisel.LCD
 
 That will activate the LCD named `Chisel.LCD` (preconfigured with what you like - an exlamation mark for example) when the total mass of the vehicle the programmable block is attached to will increase to more than 1.4 tons (because you might overload it with the drill).
 
